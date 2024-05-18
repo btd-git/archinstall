@@ -37,12 +37,12 @@ btrfs su cr /mnt/@log
 umount /mnt
 
 mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@ /dev/$sda2 /mnt
-mkdir -p /mnt/{boot,home,.snapshots,var/{cache,log}}
+mkdir -p /mnt/{boot/efi,home,.snapshots,var/{cache,log}}
 mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@cache /dev/$sda2 /mnt/var/cache
 mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@home /dev/$sda2 /mnt/home
 mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@log /dev/$sda2 /mnt/var/log
 mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@snapshots /dev/$sda2 /mnt/.snapshots
-mount /dev/$sda1 /mnt/boot
+mount /dev/$sda1 /mnt/boot/efi
 
 # ------------------------------------------------------
 # FIND BEST DOWNLOAD SERVERS
