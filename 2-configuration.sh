@@ -23,7 +23,7 @@ hwclock --systohc
 # Update reflector
 # ------------------------------------------------------
 echo " Fetching the Best Servers--"
-reflector -c "India" -p https -a 3 --sort rate --save /etc/pacman.d/mirrorlist
+reflector -c "India" -p https -a 5 --sort rate --save /etc/pacman.d/mirrorlist
 
 # ------------------------------------------------------
 # Synchronize mirrors
@@ -95,7 +95,7 @@ systemctl enable acpid
 # ------------------------------------------------------
 # Grub installation
 # ------------------------------------------------------
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB --removable
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB --removable
 grub-mkconfig -o /boot/grub/grub.cfg
 
 # ------------------------------------------------------
