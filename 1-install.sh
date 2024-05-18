@@ -36,19 +36,19 @@ btrfs su cr /mnt/@snapshots
 btrfs su cr /mnt/@log
 umount /mnt
 
-mount -o compress=zstd:1,noatime,subvol=@ /dev/$sda2 /mnt
-mkdir -p /mnt/{boot/efi,home,.snapshots,var/{cache,log}}
-mount -o compress=zstd:1,noatime,subvol=@cache /dev/$sda2 /mnt/var/cache
-mount -o compress=zstd:1,noatime,subvol=@home /dev/$sda2 /mnt/home
-mount -o compress=zstd:1,noatime,subvol=@log /dev/$sda2 /mnt/var/log
-mount -o compress=zstd:1,noatime,subvol=@snapshots /dev/$sda2 /mnt/.snapshots
-mount /dev/$sda1 /mnt/boot/efi
+mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@ /dev/$sda2 /mnt
+mkdir -p /mnt/{boot,home,.snapshots,var/{cache,log}}
+mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@cache /dev/$sda2 /mnt/var/cache
+mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@home /dev/$sda2 /mnt/home
+mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@log /dev/$sda2 /mnt/var/log
+mount -o rw,compress=zstd:1,noatime,space_cache=v2,subvol=@snapshots /dev/$sda2 /mnt/.snapshots
+mount /dev/$sda1 /mnt/boot
 
 # ------------------------------------------------------
 # FIND BEST DOWNLOAD SERVERS
 # ------------------------------------------------------
-echo "FINDING BEST DOWNLOAD SERVERS"
-reflector -c "India" -a 3 -p https --sort rate --save /etc/pacman.d/mirrorlist
+echo "FINDING BEST SERVERS"
+reflector -c "India" -a 5 -p https --sort rate --save /etc/pacman.d/mirrorlist
 
 # ------------------------------------------------------
 # UNCOMMENT "ParallelDownloads = 50" in /etc/pacman.conf
