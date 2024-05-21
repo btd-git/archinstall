@@ -7,16 +7,16 @@
 #                   |_|                         
 # ----------------------------------------------------- 
 echo " ----------------------------------------------------- "
-echo "   ____                        _           _    "
+echo "  ____                        _           _     "
 echo " / ___| _ __   __ _ _ __  ___| |__   ___ | |_   "
-echo " \___ \| '_ \ / _` | '_ \/ __| '_ \ / _ \| __|  "
-echo "  ___) | | | | (_| | |_) \__ \ | | | (_) | |_   "
+echo " \___ \| /_ \ / _/ | /_ \/ __| ._ \ / _ \| __|  "
+echo "  ___| | | | | |_| | |_| \__ \ | | | <_> | |_   "
 echo " |____/|_| |_|\__,_| .__/|___/_| |_|\___/ \__|  "
 echo "                   |_|                          "
 echo " -------------------------------------------------------" 
 
 
-read -p "Enter a comment for the snapshot: " c
+read -p "Enter A Comment for The Snapshot: " c
 sudo timeshift --create --comments "$c"
 sudo timeshift --list
 sudo grub-mkconfig -o /boot/grub/grub.cfg
